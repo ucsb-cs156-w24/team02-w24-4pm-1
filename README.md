@@ -6,6 +6,14 @@ TODO: change heading above to your repo name, e.g. `# team02-w24-6pm-4`
 
 TODO: Add a link to the deployed Dokku app for your team here, e.g.
 
+NAME              TASK
+tyler:       dining commons
+likhit:      help-requests
+alex:        student orgs
+anthony:     menu item review
+chris:       articles
+arnav:       recommendation requests
+
 Deployments:
 
 * Prod: <https://team02.dokku-17.cs.ucsb.edu>
