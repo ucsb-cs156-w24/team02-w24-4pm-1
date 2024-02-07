@@ -1,7 +1,7 @@
 { "databaseChangeLog": [
     {
         "changeSet": {
-          "id": "UCSBDiningCommonsMenuItems-1",
+          "id": "UCSBDiningCommonsMenuItems-2",
           "author": "MattP",
           "preConditions": [
             {
@@ -21,12 +21,19 @@
             {
               "createTable": {
                 "columns": [
-                  {
+                {   
                     "column": {
+                      "autoIncrement": true,
                       "constraints": {
                         "primaryKey": true,
                         "primaryKeyName": "CONSTRAINT_3"
-                      },
+                      },  
+                      "name": "ID",
+                      "type": "BIGINT"
+                    }   
+                  },
+                  {
+                    "column": {    
                       "name": "CODE",
                       "type": "VARCHAR(255)"
                     }

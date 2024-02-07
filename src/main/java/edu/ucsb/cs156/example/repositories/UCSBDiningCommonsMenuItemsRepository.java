@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface UCSBDiningCommonsMenuItemsRepository extends CrudRepository<UCSBDiningCommonsMenuItems, String> {
+public interface UCSBDiningCommonsMenuItemsRepository extends CrudRepository<UCSBDiningCommonsMenuItems, Long> {
  
 }
