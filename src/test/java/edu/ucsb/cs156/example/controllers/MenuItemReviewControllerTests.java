@@ -32,7 +32,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@WebMvcTest(controllers = MenuItemReviewCotroller.class)
+@WebMvcTest(controllers = MenuItemReviewController.class)
 @Import(TestConfig.class)
 public class MenuItemReviewsControllerTests extends ControllerTestCase{
 
