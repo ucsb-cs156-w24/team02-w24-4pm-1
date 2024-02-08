@@ -235,7 +235,7 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                 assertEquals("UCSBDiningCommonsMenuItems with id 0 not found", json.get("message"));
         }
 
-        // Tests for PUT /api/ucsbdiningcommonsmenuitem?...
+        // Tests for PUT /api/ucsbdiningcommonsmenuitem?id=...
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
@@ -250,8 +250,8 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
 
                 UCSBDiningCommonsMenuItems carrilloEdited = UCSBDiningCommonsMenuItems.builder()
                                 .name("Carrillo Dining Hall")
-                                .code("carrillo")
-                                .station("carrillo")
+                                .code("carrillo dining hall")
+                                .station("carrillo dining hall")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(carrilloEdited);
@@ -269,7 +269,7 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
 
                 // assert
                 verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(1L);
-                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(carrilloEdited); // should be saved with updiningcommonsmenuitemd info
+                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(carrilloEdited); // should be saved with correct ucsbdiningcommonsmenuitem info
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(requestBody, responseString);
         }
