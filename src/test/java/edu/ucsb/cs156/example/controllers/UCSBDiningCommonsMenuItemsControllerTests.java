@@ -185,38 +185,34 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                 assertEquals("UCSBDiningCommonsMenuItems with id 1 not found", json.get("message"));
         } 
 
-/*
+
         // Tests for DELETE /api/ucsbdiningcommonsmenuitem?...
 
         @WithMockUser(roles = { "ADMIN", "USER" })
         @Test
-        public void admin_can_delete_a_date() throws Exception {
+        public void admin_can_delete_a_diningcommonsmenuitem() throws Exception {
                 // arrange
 
                 UCSBDiningCommonsMenuItems portola = UCSBDiningCommonsMenuItems.builder()
                                 .name("Portola")
                                 .code("portola")
-                                .hasSackMeal(true)
-                                .hasTakeOutMeal(true)
-                                .hasDiningCam(true)
-                                .latitude(34.417723)
-                                .longitude(-119.867427)
+                                .station("portola")    
                                 .build();
 
-                when(ucsbDiningCommonsMenuItemsRepository.findById(eq("portola"))).thenReturn(Optional.of(portola));
+                when(ucsbDiningCommonsMenuItemsRepository.findById(eq(1L))).thenReturn(Optional.of(portola));
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/ucsbdiningcommonsmenuitem?code=portola")
+                                delete("/api/ucsbdiningcommonsmenuitem?id=1")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById("portola");
+                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(1L);
                 verify(ucsbDiningCommonsMenuItemsRepository, times(1)).delete(any());
 
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("UCSBDiningCommonsMenuItems with id portola deleted", json.get("message"));
+                assertEquals("UCSBDiningCommonsMenuItems with id 1 deleted", json.get("message"));
         }
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -225,20 +221,20 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                         throws Exception {
                 // arrange
 
-                when(ucsbDiningCommonsMenuItemsRepository.findById(eq("Entrees"))).thenReturn(Optional.empty());
+                when(ucsbDiningCommonsMenuItemsRepository.findById(eq(0L))).thenReturn(Optional.empty());
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/ucsbdiningcommonsmenuitem?code=1")
+                                delete("/api/ucsbdiningcommonsmenuitem?id=0")
                                                 .with(csrf()))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
-                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById("Entrees");
+                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(0L);
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("UCSBDiningCommonsMenuItems with id 1 not found", json.get("message"));
+                assertEquals("UCSBDiningCommonsMenuItems with id 0 not found", json.get("message"));
         }
-
+/*
         // Tests for PUT /api/ucsbdiningcommonsmenuitem?...
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -281,7 +277,7 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
 
                 // assert
                 verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById("carrillo");
-                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(carrilloEdited); // should be saved with updated info
+                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(carrilloEdited); // should be saved with updiningcommonsmenuitemd info
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(requestBody, responseString);
         }
