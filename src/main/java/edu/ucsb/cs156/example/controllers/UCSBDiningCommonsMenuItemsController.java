@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @Tag(name = "UCSBDiningCommonsMenuItems")
-@RequestMapping("/api/ucsbdiningcommonsmenuitems")
+@RequestMapping("/api/ucsbdiningcommonsmenuitem")
 @RestController
 @Slf4j
 public class UCSBDiningCommonsMenuItemsController extends ApiController {
@@ -31,15 +31,15 @@ public class UCSBDiningCommonsMenuItemsController extends ApiController {
     @Autowired
     UCSBDiningCommonsMenuItemsRepository ucsbDiningCommonsMenuItemsRepository;
 
-    @Operation(summary= "List all ucsb dining commonsmenuitems")
+    @Operation(summary= "List all ucsb dining commonsmenuitem")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<UCSBDiningCommonsMenuItems> allCommonsMenuItemss() {
-        Iterable<UCSBDiningCommonsMenuItems> commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findAll();
-        return commonsmenuitems;
+    public Iterable<UCSBDiningCommonsMenuItems> allCommonsMenuItems() {
+        Iterable<UCSBDiningCommonsMenuItems> commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findAll();
+        return commonsmenuitem;
     }
 
-    @Operation(summary= "Create a new commonsmenuitems")
+    @Operation(summary= "Create a new commonsmenuitem")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public UCSBDiningCommonsMenuItems postCommonsMenuItems(
@@ -49,25 +49,25 @@ public class UCSBDiningCommonsMenuItemsController extends ApiController {
         )
         {
 
-        UCSBDiningCommonsMenuItems commonsmenuitems = new UCSBDiningCommonsMenuItems();
-        commonsmenuitems.setCode(code);
-        commonsmenuitems.setName(name);
-        commonsmenuitems.setStation(station);
+        UCSBDiningCommonsMenuItems commonsmenuitem = new UCSBDiningCommonsMenuItems();
+        commonsmenuitem.setCode(code);
+        commonsmenuitem.setName(name);
+        commonsmenuitem.setStation(station);
 
-        UCSBDiningCommonsMenuItems savedCommonsMenuItems = ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitems);
+        UCSBDiningCommonsMenuItems savedCommonsMenuItems = ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitem);
 
         return savedCommonsMenuItems;
     }
 /*
-    @Operation(summary= "Get a single commonsmenuitems")
+    @Operation(summary= "Get a single commonsmenuitem")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public UCSBDiningCommonsMenuItems getById(
             @Parameter(name="code") @RequestParam String code) {
-        UCSBDiningCommonsMenuItems commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findById(code)
+        UCSBDiningCommonsMenuItems commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, code));
 
-        return commonsmenuitems;
+        return commonsmenuitem;
     }
 
     @Operation(summary= "Delete a UCSBDiningCommonsMenuItems")
@@ -75,33 +75,33 @@ public class UCSBDiningCommonsMenuItemsController extends ApiController {
     @DeleteMapping("")
     public Object deleteCommonsMenuItems(
             @Parameter(name="code") @RequestParam String code) {
-        UCSBDiningCommonsMenuItems commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findById(code)
+        UCSBDiningCommonsMenuItems commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, code));
 
-        ucsbDiningCommonsMenuItemsRepository.delete(commonsmenuitems);
+        ucsbDiningCommonsMenuItemsRepository.delete(commonsmenuitem);
         return genericMessage("UCSBDiningCommonsMenuItems with id %s deleted".formatted(code));
     }
 
-    @Operation(summary= "Update a single commonsmenuitems")
+    @Operation(summary= "Update a single commonsmenuitem")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
     public UCSBDiningCommonsMenuItems updateCommonsMenuItems(
             @Parameter(name="code") @RequestParam String code,
             @RequestBody @Valid UCSBDiningCommonsMenuItems incoming) {
 
-        UCSBDiningCommonsMenuItems commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findById(code)
+        UCSBDiningCommonsMenuItems commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, code));
 
 
-        commonsmenuitems.setName(incoming.getName());  
-        commonsmenuitems.setHasSackMeal(incoming.getHasSackMeal());
-        commonsmenuitems.setHasTakeOutMeal(incoming.getHasTakeOutMeal());
-        commonsmenuitems.setHasDiningCam(incoming.getHasDiningCam());
-        commonsmenuitems.setLatitude(incoming.getLatitude());
-        commonsmenuitems.setLongitude(incoming.getLongitude());
+        commonsmenuitem.setName(incoming.getName());  
+        commonsmenuitem.setHasSackMeal(incoming.getHasSackMeal());
+        commonsmenuitem.setHasTakeOutMeal(incoming.getHasTakeOutMeal());
+        commonsmenuitem.setHasDiningCam(incoming.getHasDiningCam());
+        commonsmenuitem.setLatitude(incoming.getLatitude());
+        commonsmenuitem.setLongitude(incoming.getLongitude());
 
-        ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitems);
+        ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitem);
 
-        return commonsmenuitems;
+        return commonsmenuitem;
     }*/
 }
