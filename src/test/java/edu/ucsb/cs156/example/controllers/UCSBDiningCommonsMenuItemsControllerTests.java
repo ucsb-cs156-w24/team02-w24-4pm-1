@@ -234,7 +234,7 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("UCSBDiningCommonsMenuItems with id 0 not found", json.get("message"));
         }
-/*
+
         // Tests for PUT /api/ucsbdiningcommonsmenuitem?...
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -245,30 +245,22 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                 UCSBDiningCommonsMenuItems carrilloOrig = UCSBDiningCommonsMenuItems.builder()
                                 .name("Carrillo")
                                 .code("carrillo")
-                                .hasSackMeal(false)
-                                .hasTakeOutMeal(false)
-                                .hasDiningCam(true)
-                                .latitude(34.409953)
-                                .longitude(-119.85277)
+                                .station("carrillo")
                                 .build();
 
                 UCSBDiningCommonsMenuItems carrilloEdited = UCSBDiningCommonsMenuItems.builder()
                                 .name("Carrillo Dining Hall")
                                 .code("carrillo")
-                                .hasSackMeal(true)
-                                .hasTakeOutMeal(true)
-                                .hasDiningCam(false)
-                                .latitude(34.409954)
-                                .longitude(-119.85278)
+                                .station("carrillo")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(carrilloEdited);
 
-                when(ucsbDiningCommonsMenuItemsRepository.findById(eq("carrillo"))).thenReturn(Optional.of(carrilloOrig));
+                when(ucsbDiningCommonsMenuItemsRepository.findById(eq(1L))).thenReturn(Optional.of(carrilloOrig));
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/ucsbdiningcommonsmenuitem?code=carrillo")
+                                put("/api/ucsbdiningcommonsmenuitem?id=1")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -276,7 +268,7 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById("carrillo");
+                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(1L);
                 verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(carrilloEdited); // should be saved with updiningcommonsmenuitemd info
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(requestBody, responseString);
@@ -291,20 +283,16 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                 UCSBDiningCommonsMenuItems editedCommonsMenuItems = UCSBDiningCommonsMenuItems.builder()
                                 .name("Munger Hall")
                                 .code("Entrees")
-                                .hasSackMeal(false)
-                                .hasTakeOutMeal(false)
-                                .hasDiningCam(true)
-                                .latitude(34.420799)
-                                .longitude(-119.852617)
+                                .station("lol")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(editedCommonsMenuItems);
 
-                when(ucsbDiningCommonsMenuItemsRepository.findById(eq("Entrees"))).thenReturn(Optional.empty());
+                when(ucsbDiningCommonsMenuItemsRepository.findById(eq(1L))).thenReturn(Optional.empty());
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/ucsbdiningcommonsmenuitem?code=1")
+                                put("/api/ucsbdiningcommonsmenuitem?id=1")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -312,9 +300,9 @@ public class UCSBDiningCommonsMenuItemsControllerTests extends ControllerTestCas
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
-                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById("Entrees");
+                verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(1L);
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("UCSBDiningCommonsMenuItems with id 1 not found", json.get("message"));
 
-        }*/
+        }
 }
