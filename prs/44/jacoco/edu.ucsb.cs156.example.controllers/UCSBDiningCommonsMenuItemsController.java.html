@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @Tag(name = &quot;UCSBDiningCommonsMenuItems&quot;)
-@RequestMapping(&quot;/api/ucsbdiningcommonsmenuitems&quot;)
+@RequestMapping(&quot;/api/ucsbdiningcommonsmenuitem&quot;)
 @RestController
 <span class="fc" id="L28">@Slf4j</span>
 <span class="fc" id="L29">public class UCSBDiningCommonsMenuItemsController extends ApiController {</span>
@@ -31,15 +31,15 @@ import javax.validation.Valid;
     @Autowired
     UCSBDiningCommonsMenuItemsRepository ucsbDiningCommonsMenuItemsRepository;
 
-    @Operation(summary= &quot;List all ucsb dining commonsmenuitems&quot;)
+    @Operation(summary= &quot;List all ucsb dining commonsmenuitem&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;/all&quot;)
-    public Iterable&lt;UCSBDiningCommonsMenuItems&gt; allCommonsMenuItemss() {
-<span class="fc" id="L38">        Iterable&lt;UCSBDiningCommonsMenuItems&gt; commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findAll();</span>
-<span class="fc" id="L39">        return commonsmenuitems;</span>
+    public Iterable&lt;UCSBDiningCommonsMenuItems&gt; allCommonsMenuItems() {
+<span class="fc" id="L38">        Iterable&lt;UCSBDiningCommonsMenuItems&gt; commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findAll();</span>
+<span class="fc" id="L39">        return commonsmenuitem;</span>
     }
 
-    @Operation(summary= &quot;Create a new commonsmenuitems&quot;)
+    @Operation(summary= &quot;Create a new commonsmenuitem&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PostMapping(&quot;/post&quot;)
     public UCSBDiningCommonsMenuItems postCommonsMenuItems(
@@ -49,25 +49,25 @@ import javax.validation.Valid;
         )
         {
 
-<span class="fc" id="L52">        UCSBDiningCommonsMenuItems commonsmenuitems = new UCSBDiningCommonsMenuItems();</span>
-<span class="fc" id="L53">        commonsmenuitems.setCode(code);</span>
-<span class="fc" id="L54">        commonsmenuitems.setName(name);</span>
-<span class="fc" id="L55">        commonsmenuitems.setStation(station);</span>
+<span class="fc" id="L52">        UCSBDiningCommonsMenuItems commonsmenuitem = new UCSBDiningCommonsMenuItems();</span>
+<span class="fc" id="L53">        commonsmenuitem.setCode(code);</span>
+<span class="fc" id="L54">        commonsmenuitem.setName(name);</span>
+<span class="fc" id="L55">        commonsmenuitem.setStation(station);</span>
 
-<span class="fc" id="L57">        UCSBDiningCommonsMenuItems savedCommonsMenuItems = ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitems);</span>
+<span class="fc" id="L57">        UCSBDiningCommonsMenuItems savedCommonsMenuItems = ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitem);</span>
 
 <span class="fc" id="L59">        return savedCommonsMenuItems;</span>
     }
 /*
-    @Operation(summary= &quot;Get a single commonsmenuitems&quot;)
+    @Operation(summary= &quot;Get a single commonsmenuitem&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;&quot;)
     public UCSBDiningCommonsMenuItems getById(
             @Parameter(name=&quot;code&quot;) @RequestParam String code) {
-        UCSBDiningCommonsMenuItems commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findById(code)
+        UCSBDiningCommonsMenuItems commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, code));
 
-        return commonsmenuitems;
+        return commonsmenuitem;
     }
 
     @Operation(summary= &quot;Delete a UCSBDiningCommonsMenuItems&quot;)
@@ -75,34 +75,34 @@ import javax.validation.Valid;
     @DeleteMapping(&quot;&quot;)
     public Object deleteCommonsMenuItems(
             @Parameter(name=&quot;code&quot;) @RequestParam String code) {
-        UCSBDiningCommonsMenuItems commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findById(code)
+        UCSBDiningCommonsMenuItems commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, code));
 
-        ucsbDiningCommonsMenuItemsRepository.delete(commonsmenuitems);
+        ucsbDiningCommonsMenuItemsRepository.delete(commonsmenuitem);
         return genericMessage(&quot;UCSBDiningCommonsMenuItems with id %s deleted&quot;.formatted(code));
     }
 
-    @Operation(summary= &quot;Update a single commonsmenuitems&quot;)
+    @Operation(summary= &quot;Update a single commonsmenuitem&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
     @PutMapping(&quot;&quot;)
     public UCSBDiningCommonsMenuItems updateCommonsMenuItems(
             @Parameter(name=&quot;code&quot;) @RequestParam String code,
             @RequestBody @Valid UCSBDiningCommonsMenuItems incoming) {
 
-        UCSBDiningCommonsMenuItems commonsmenuitems = ucsbDiningCommonsMenuItemsRepository.findById(code)
+        UCSBDiningCommonsMenuItems commonsmenuitem = ucsbDiningCommonsMenuItemsRepository.findById(code)
                 .orElseThrow(() -&gt; new EntityNotFoundException(UCSBDiningCommonsMenuItems.class, code));
 
 
-        commonsmenuitems.setName(incoming.getName());  
-        commonsmenuitems.setHasSackMeal(incoming.getHasSackMeal());
-        commonsmenuitems.setHasTakeOutMeal(incoming.getHasTakeOutMeal());
-        commonsmenuitems.setHasDiningCam(incoming.getHasDiningCam());
-        commonsmenuitems.setLatitude(incoming.getLatitude());
-        commonsmenuitems.setLongitude(incoming.getLongitude());
+        commonsmenuitem.setName(incoming.getName());  
+        commonsmenuitem.setHasSackMeal(incoming.getHasSackMeal());
+        commonsmenuitem.setHasTakeOutMeal(incoming.getHasTakeOutMeal());
+        commonsmenuitem.setHasDiningCam(incoming.getHasDiningCam());
+        commonsmenuitem.setLatitude(incoming.getLatitude());
+        commonsmenuitem.setLongitude(incoming.getLongitude());
 
-        ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitems);
+        ucsbDiningCommonsMenuItemsRepository.save(commonsmenuitem);
 
-        return commonsmenuitems;
+        return commonsmenuitem;
     }*/
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
