@@ -33,7 +33,7 @@ import java.time.LocalDateTime;
 @RestController
 @Slf4j
 
-public class MenuItemReviewCotroller extends ApiController{
+public class MenuItemReviewController extends ApiController{
 
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
