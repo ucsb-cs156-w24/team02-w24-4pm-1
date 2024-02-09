@@ -131,14 +131,14 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                         .explanation("string")
                         .tableOrBreakoutRoom("1")
                         .requestTime(ldt1)
-                        .solved(false)
+                        .solved(true)
                         .build();
 
                 when(helpRequestRepository.save(eq(helpRequest1))).thenReturn(helpRequest1);
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/helprequests/post?requesterEmail=email&teamId=1&tableOrBreakoutRoom=1&explanation=string&requestTime=2024-01-01T00:00:00&solved=false")
+                                post("/api/helprequests/post?requesterEmail=email&teamId=1&tableOrBreakoutRoom=1&explanation=string&requestTime=2024-01-01T00:00:00&solved=true")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
