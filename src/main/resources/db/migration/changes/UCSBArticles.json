@@ -1,0 +1,74 @@
+{
+    "databaseChangeLog": [
+      {
+        "changeSet": {
+          "id": "UCSBArticles-1",
+          "author": "ChrisR",
+          "preConditions": [
+            {
+              "onFail": "MARK_RAN"
+            },
+            {
+              "not": [
+                {
+                  "tableExists": {
+                    "tableName": "UCSBARTICLES"
+                  }
+                }
+              ]
+            }
+          ],
+          "changes": [
+            {
+              "createTable": {
+                "columns": [
+                  {
+                    "column": {
+                      "autoIncrement": true,
+                      "constraints": {
+                        "primaryKey": true,
+                        "primaryKeyName": "Articles-1"
+                      },
+                      "name": "ID",
+                      "type": "BIGINT"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "TITLE",
+                      "type": "STRING"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "URL",
+                      "type": "STRING"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "EXPLANATION",
+                      "type": "STRING"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "EMAIL",
+                      "type": "STRING"
+                    }
+                  },
+                  {
+                    "column": {
+                      "name": "DATEADDED",
+                      "type": "LOCAL_DATE_TIME"
+                    }
+                  }
+                ],
+                "tableName": "UCSBARTICLES"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
