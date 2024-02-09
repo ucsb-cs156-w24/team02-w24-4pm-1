@@ -149,6 +149,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                 assertEquals(expectedJson, responseString);
         }
 
+
         // Tests for GET /api/helprequests?id=...
 
         @Test
@@ -207,3 +208,4 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                 assertEquals("HelpRequest with id 7 not found", json.get("message"));
         }
 }
+
