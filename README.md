@@ -3,15 +3,16 @@
 Instructions: <https://ucsb-cs156.github.io/w24/lab/team02.html>
 
 TODO: Add a link to the deployed Dokku app for your team here, e.g.
-
-NAME              TASK
-tyler:       dining commons
-likhit:      help-requests
-alex:        student orgs
-anthony:     menu item review
-chris:       articles
-arnav:       recommendation requests
-
+```
+| Table                       | Team Member  | Github Id         |
+|-----------------------------|--------------|-------------------|
+| `UCSBDiningCommonsMenuItem` | Tyler        |TianyiYang-Tyler   |
+| `UCSBOrganization`          | Alex         |alexanderthomasucsb|
+| `RecommendationRequest`     |  Arnav       | aarnavkumar       |
+| `MenuItemReview`            | Anthony      | jinanthony        |
+| `HelpRequest`               |  Likhit      | jtanggy           |
+| `Articles`                  | Chris        | chrisriney4       |
+```
 Deployments:
 
 * Prod: <https://team02.dokku-17.cs.ucsb.edu>
