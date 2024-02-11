@@ -72,7 +72,7 @@ public class UCSBArticlesController extends ApiController {
         return savedUcsbArticles;
     }
 
-    @Operation(summary= "Get a single date")
+    @Operation(summary= "Get a single article")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public UCSBArticles getById(
