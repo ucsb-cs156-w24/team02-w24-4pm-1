@@ -35,12 +35,6 @@
                   },
                   {
                     "column": {
-                      "name": "ITEMID",
-                      "type": "INTEGER"
-                    }
-                  },
-                  {
-                    "column": {
                       "name": "REQUESTER_EMAIL",
                       "type": "VARCHAR(255)"
                     }
