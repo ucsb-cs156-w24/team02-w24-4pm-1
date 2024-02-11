@@ -36,31 +36,31 @@
                   {
                     "column": {
                       "name": "TITLE",
-                      "type": "STRING"
+                      "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
                       "name": "URL",
-                      "type": "STRING"
+                      "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
                       "name": "EXPLANATION",
-                      "type": "STRING"
+                      "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
                       "name": "EMAIL",
-                      "type": "STRING"
+                      "type": "VARCHAR(255)"
                     }
                   },
                   {
                     "column": {
-                      "name": "DATEADDED",
-                      "type": "LOCAL_DATE_TIME"
+                      "name": "DATE_ADDED",
+                      "type": "TIMESTAMP"
                     }
                   }
                 ],

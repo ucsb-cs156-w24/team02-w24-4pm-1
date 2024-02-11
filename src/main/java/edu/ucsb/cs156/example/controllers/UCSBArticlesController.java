@@ -44,7 +44,7 @@ public class UCSBArticlesController extends ApiController {
         return articles;
     }
 
-    @Operation(summary= "Create a new date")
+    @Operation(summary= "Create a new article")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public UCSBArticles postUCSBArticles(
@@ -52,14 +52,13 @@ public class UCSBArticlesController extends ApiController {
             @Parameter(name="url") @RequestParam String url,
             @Parameter(name="explanation") @RequestParam String explanation,
             @Parameter(name="email") @RequestParam String email,
-            @Parameter(name="dateAdded") @RequestParam LocalDateTime dateAdded,
-            @Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("localDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime localDateTime)
+            @Parameter(name="dateAdded", description = "in iso format, e.g. YYYY-mm-dd see https://en.wikipedia.org/wiki/ISO_8601") @RequestParam("dateAdded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAdded)
             throws JsonProcessingException {
 
         // For an explanation of @ArticlesTimeFormat(iso = ArticlesTimeFormat.ISO.DATE_TIME)
         // See: https://www.baeldung.com/spring-date-parameters
 
-        log.info("localArticlesTime={}", localDateTime);
+        //log.info("localArticlesTime={}", dateAdded);
 
         UCSBArticles ucsbArticles = new UCSBArticles();
         ucsbArticles.setTitle(title);
