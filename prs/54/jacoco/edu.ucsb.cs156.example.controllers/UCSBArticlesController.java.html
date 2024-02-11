@@ -72,7 +72,7 @@ import java.time.LocalDateTime;
 <span class="fc" id="L72">        return savedUcsbArticles;</span>
     }
 
-    @Operation(summary= &quot;Get a single date&quot;)
+    @Operation(summary= &quot;Get a single article&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
     @GetMapping(&quot;&quot;)
     public UCSBArticles getById(
