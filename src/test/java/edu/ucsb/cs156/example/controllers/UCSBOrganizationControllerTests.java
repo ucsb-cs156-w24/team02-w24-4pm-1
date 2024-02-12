@@ -134,6 +134,6 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
                 String expectedJson = mapper.writeValueAsString(TEST2);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
-                //test
+                //test2
         }
 }
