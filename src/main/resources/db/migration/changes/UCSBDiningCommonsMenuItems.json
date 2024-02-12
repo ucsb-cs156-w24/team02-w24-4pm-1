@@ -40,7 +40,7 @@
                   },
                   {
                     "column": {   
-                      "name": "LOCATION",
+                      "name": "STATION",
                       "type": "VARCHAR(255)"
                     }
                   }, 
