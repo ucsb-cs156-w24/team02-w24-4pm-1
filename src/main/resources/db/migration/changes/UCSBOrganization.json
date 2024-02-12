@@ -24,8 +24,7 @@
                   {
                     "column": {
                       "constraints": {
-                        "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_40"
+                        "primaryKey": true
                       },
                       "name": "ORGCODE",
                       "type": "VARCHAR(255)"
@@ -45,9 +44,6 @@
                   },
                   {
                     "column": {
-                      "constraints": {
-                        "nullable": false
-                      },
                       "name": "INACTIVE",
                       "type": "BOOLEAN"
                     }
