@@ -140,7 +140,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
         // Tests for GET /api/ucsborganization?...
 
         @Test
-        public void logged_out_users_cannot_get_by_id() throws Exception {
+        public void test_logged_out_users_cannot_get_by_id() throws Exception {
                 mockMvc.perform(get("/api/ucsborganization?orgCode=test5"))
                                 .andExpect(status().is(403)); // logged out users can't get by id
         }
