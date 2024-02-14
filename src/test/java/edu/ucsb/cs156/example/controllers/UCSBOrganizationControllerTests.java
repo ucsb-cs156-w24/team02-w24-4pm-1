@@ -191,7 +191,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
                                 .orgCode("test5-e")
                                 .orgTranslationShort("test5-e")
                                 .orgTranslation("test5-e")
-                                .inactive(false)
+                                .inactive(true)
                                 .build();
  
                  String requestBody = mapper.writeValueAsString(test5Edited);
