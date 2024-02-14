@@ -72,7 +72,7 @@ public class UCSBOrganizationController extends ApiController {
     @Operation(summary= "Update a single org")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
-    public UCSBOrganization updateOrg(
+    public UCSBOrganization updateCommons(
             @Parameter(name="orgCode") @RequestParam String orgCode,
             @RequestBody @Valid UCSBOrganization incoming) {
 
@@ -91,4 +91,3 @@ public class UCSBOrganizationController extends ApiController {
     }
 
 }
-
