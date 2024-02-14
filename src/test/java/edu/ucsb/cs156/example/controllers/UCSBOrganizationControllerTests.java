@@ -134,6 +134,60 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
                 String expectedJson = mapper.writeValueAsString(TEST2);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
-                //test2
+        }
+
+        // Tests for GET /api/ucsbdiningcommons?...
+
+        @Test
+        public void logged_out_users_cannot_get_by_id() throws Exception {
+                mockMvc.perform(get("/api/ucsborganization?orgCode=test"))
+                                .andExpect(status().is(403)); // logged out users can't get by id
+        }
+
+        @WithMockUser(roles = { "USER" })
+        @Test
+        public void test_that_logged_in_user_can_get_by_id_when_the_id_exists() throws Exception {
+
+                // arrange
+
+                UCSBOrganization org = UCSBOrganization.builder()
+                        .orgCode("test")
+                        .orgTranslationShort("test")
+                        .orgTranslation("test")
+                        .inactive(true)
+                        .build();
+
+                when(ucsbOrgsRepository.findById(eq("test"))).thenReturn(Optional.of(org));
+
+                // act
+                MvcResult response = mockMvc.perform(get("/api/ucsborganization?orgCode=test"))
+                                .andExpect(status().isOk()).andReturn();
+
+                // assert
+
+                verify(ucsbOrgsRepository, times(1)).findById(eq("test"));
+                String expectedJson = mapper.writeValueAsString(org);
+                String responseString = response.getResponse().getContentAsString();
+                assertEquals(expectedJson, responseString);
+        }
+
+        @WithMockUser(roles = { "USER" })
+        @Test
+        public void test_that_logged_in_user_can_get_by_id_when_the_id_does_not_exist() throws Exception {
+
+                // arrange
+
+                when(ucsbOrgsRepository.findById(eq("test"))).thenReturn(Optional.empty());
+
+                // act
+                MvcResult response = mockMvc.perform(get("/api/ucsborganization?orgCode=test"))
+                                .andExpect(status().isNotFound()).andReturn();
+
+                // assert
+
+                verify(ucsbOrgsRepository, times(1)).findById(eq("test"));
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("EntityNotFoundException", json.get("type"));
+                assertEquals("UCSBOrganization with id test not found", json.get("message"));
         }
 }
