@@ -190,4 +190,55 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
                 assertEquals("EntityNotFoundException", json.get("type"));
                 assertEquals("UCSBOrganization with id test not found", json.get("message"));
         }
+
+
+        // Tests for DELETE /api/ucsbdiningcommons?...
+
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_can_delete_a_org() throws Exception {
+                // arrange
+
+                UCSBOrganization org = UCSBOrganization.builder()
+                        .orgCode("test")
+                        .orgTranslationShort("test")
+                        .orgTranslation("test")
+                        .inactive(true)
+                        .build();
+
+                when(ucsbOrgsRepository.findById(eq("test"))).thenReturn(Optional.of(org));
+
+                // act
+                MvcResult response = mockMvc.perform(
+                                delete("/api/ucsborganization?orgCode=test")
+                                                .with(csrf()))
+                                .andExpect(status().isOk()).andReturn();
+
+                // assert
+                verify(ucsbOrgsRepository, times(1)).findById("test");
+                verify(ucsbOrgsRepository, times(1)).delete(any());
+
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("UCSBOrganization with id test deleted", json.get("message"));
+        }
+
+        @WithMockUser(roles = { "ADMIN", "USER" })
+        @Test
+        public void admin_tries_to_delete_non_existant_org_and_gets_right_error_message()
+                        throws Exception {
+                // arrange
+
+                when(ucsbOrgsRepository.findById(eq("test"))).thenReturn(Optional.empty());
+
+                // act
+                MvcResult response = mockMvc.perform(
+                                delete("/api/ucsborganization?orgCode=test")
+                                                .with(csrf()))
+                                .andExpect(status().isNotFound()).andReturn();
+
+                // assert
+                verify(ucsbOrgsRepository, times(1)).findById("test");
+                Map<String, Object> json = responseToJson(response);
+                assertEquals("UCSBOrganization with id test not found", json.get("message"));
+        }
 }
